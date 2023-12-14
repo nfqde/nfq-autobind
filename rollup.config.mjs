@@ -15,7 +15,7 @@ export default [
             ...pkg.devDependencies,
             ...pkg.peerDependencies
         } || {})],
-        input: 'src/index.tsx',
+        input: 'src/index.ts',
         output: [
             {
                 exports: 'named',
