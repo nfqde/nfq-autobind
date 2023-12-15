@@ -1,13 +1,6 @@
-/* eslint-disable jsdoc/check-indentation */
-/* eslint-disable security/detect-object-injection, func-names */
+/* eslint-disable jsdoc/check-indentation, security/detect-object-injection, func-names */
 // eslint-disable-next-line @typescript-eslint/ban-types
 type MethodNames<T> = {[K in keyof T]: T[K] extends Function ? K : never}[keyof T];
-type AddInitializerFunction = (initializer: () => void) => void;
-
-interface AutobindDecoratorContext<T> {
-    addInitializer: AddInitializerFunction;
-    name: MethodNames<T>;
-}
 
 /**
  * A decorator function that automatically binds class methods to the instance of the class.
@@ -29,13 +22,16 @@ interface AutobindDecoratorContext<T> {
  * }
  * ```
  */
-export const autobind = <T>(_target: T, {addInitializer, name}: AutobindDecoratorContext<T>) => {
+export const autobind = <T extends {new (...args: any[]): object}>(
+    _target: T,
+    {addInitializer, name}: ClassMethodDecoratorContext<T>
+) => {
     addInitializer(function(this: T) {
-        const fn = this[name];
+        const fn = this[name as MethodNames<T>];
 
         if (typeof fn !== 'function') {
             throw new Error(`Expected ${String(name)} to be a function`);
         }
-        this[name] = fn.bind(this);
+        this[name as MethodNames<T>] = fn.bind(this);
     });
 };
