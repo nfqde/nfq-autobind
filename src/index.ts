@@ -22,16 +22,16 @@ type MethodNames<T> = {[K in keyof T]: T[K] extends Function ? K : never}[keyof 
  * }
  * ```
  */
-export const autobind = <T extends {new (...args: any[]): object}>(
-    _target: T,
-    {addInitializer, name}: ClassMethodDecoratorContext<T>
+export const autobind = <This, Args extends any[], Return>(
+    _target: (this: This, ...args: Args) => Return,
+    {addInitializer, name}: ClassMethodDecoratorContext<This, (this: This, ...args: Args) => Return>
 ) => {
-    addInitializer(function(this: T) {
-        const fn = this[name as MethodNames<T>];
+    addInitializer(function(this: This) {
+        const fn = this[name as MethodNames<This>];
 
         if (typeof fn !== 'function') {
             throw new Error(`Expected ${String(name)} to be a function`);
         }
-        this[name as MethodNames<T>] = fn.bind(this);
+        this[name as MethodNames<This>] = fn.bind(this);
     });
 };
