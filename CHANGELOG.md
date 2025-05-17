@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/nfqde/nfq-npm-modules-template/compare/v1.1.3...v1.1.4) (2025-05-17)
+
+
+### Bug Fixes
+
+* **Packages:** Update modules and fix typings export ([#12](https://github.com/nfqde/nfq-npm-modules-template/issues/12)) ([5a543e4](https://github.com/nfqde/nfq-npm-modules-template/commit/5a543e4dfb8d2961d4cb44991cb7adb0a1e159b5))
+
 ### [1.1.3](https://github.com/nfqde/nfq-npm-modules-template/compare/v1.1.2...v1.1.3) (2023-12-17)
 
 
