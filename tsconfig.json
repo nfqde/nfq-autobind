@@ -19,7 +19,9 @@
     "declarationDir": "types",
     "declaration": true,
     "emitDeclarationOnly": true,
-    "target": "ES2017",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "target": "ESNext",
     "types": ["node", "cypress"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
