@@ -1,5 +1,5 @@
 /* eslint-disable jsdoc/check-indentation, security/detect-object-injection, func-names */
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 type MethodNames<T> = {[K in keyof T]: T[K] extends Function ? K : never}[keyof T];
 
 /**
@@ -25,7 +25,7 @@ type MethodNames<T> = {[K in keyof T]: T[K] extends Function ? K : never}[keyof 
 export const autobind = <This, Args extends any[], Return>(
     _target: (this: This, ...args: Args) => Return,
     {addInitializer, name}: ClassMethodDecoratorContext<This, (this: This, ...args: Args) => Return>
-) => {
+): any => {
     addInitializer(function(this: This) {
         const fn = this[name as MethodNames<This>];
 

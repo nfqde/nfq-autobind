@@ -2,7 +2,7 @@ module.exports = {
     comments: false,
     env: {test: {plugins: ['istanbul']}},
     plugins: [
-        ['@babel/plugin-proposal-decorators', {legacy: true}],
+        ['@babel/plugin-proposal-decorators', {version: '2023-11'}],
         ['@babel/plugin-proposal-class-properties', {loose: false}],
         '@babel/plugin-transform-class-static-block',
         '@babel/plugin-transform-typescript',
